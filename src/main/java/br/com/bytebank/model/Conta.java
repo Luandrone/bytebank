@@ -1,8 +1,6 @@
 package br.com.bytebank.model;
 import java.math.BigDecimal;
 
-import javax.crypto.SealedObject;
-
 public class Conta {
       private Long id;
       private String titular;
@@ -23,9 +21,9 @@ public class Conta {
             if (valor.compareTo(BigDecimal.ZERO) <= 0){
                   throw new IllegalArgumentException("O valor não pode ser menor ou igual a zero");
             }
-            else {
-                  this.saldo = this.saldo.add(valor);
-            }
+            
+            this.saldo = this.saldo.add(valor);
+            
             
       }
 

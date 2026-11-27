@@ -7,6 +7,14 @@ public class Conta {
       private BigDecimal saldo;
 
       public Conta(Long id, String titular, BigDecimal saldo) {
+            if (titular == null || titular.isBlank()){
+                  throw new IllegalArgumentException("Nome inválido");
+            }
+
+            if (saldo == null || saldo.compareTo(BigDecimal.ZERO) < 0){
+                  throw new IllegalArgumentException("O valor digitado não pode ser menor que zero ou vazio");
+            }
+
             this.id = id;
             this.titular = titular;
             this.saldo = saldo;

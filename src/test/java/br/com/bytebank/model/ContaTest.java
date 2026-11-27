@@ -87,4 +87,42 @@ public class ContaTest {
 
             assertEquals(new BigDecimal("0.00"), conta.getSaldo());
       }
+
+      @Test 
+      public void devePermitirCriacaoDeContaComSaldoZero(){
+            Conta conta = new Conta(1L, "Luan", BigDecimal.ZERO);
+
+            assertEquals(new BigDecimal("0"), conta.getSaldo());
+      }
+
+      @Test 
+      public void rejeitarCriacaoDeContaComSaldoNegativo(){
+
+            assertThrows(IllegalArgumentException.class, () -> {
+                  new Conta(1L, "Luan", new BigDecimal("-100.00"));
+            });
+      }
+
+      @Test 
+      public void deveRejeitarCriacaoDeContaComTitularNulo(){
+
+            assertThrows(IllegalArgumentException.class, () -> {
+                  new Conta(1L, null, new BigDecimal("100.00"));
+            });
+      }
+
+      @Test 
+      public void deveRejeitarCriacaoDeContaComTitularEmBranco(){
+            assertThrows(IllegalArgumentException.class, () -> {
+                  new Conta(1L, "    ", new BigDecimal("100.00"));
+            });
+      }
+
+      @Test 
+      public void deveRejeitarCriacaoDeContaComSaldoNulo(){
+            
+            assertThrows(IllegalArgumentException.class, () -> {
+                  new Conta(1L, "Luan", null);
+            });
+      }
 }
